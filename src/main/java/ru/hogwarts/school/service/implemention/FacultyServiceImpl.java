@@ -31,9 +31,16 @@ private Long increment = 0L;
     public Faculty deleteFaculty(long id){
         return storage.remove(id);
     }
-    public Faculty getFacultyBayColor(String color) {
-        for (int i = 0; i < storage.size(); i++) {
-            if(storage[i])
-        }
+    @Override
+    public HashMap<Long, Faculty> getFacultyByColor(String color) {
+        HashMap<Long, Faculty> newFaculty = new HashMap<>();
+        storage.forEach((key, value) -> {
+            if (value.getColor().equals(color)) {
+                newFaculty.put(key, value);
+            }
+        });
+
+        return newFaculty;
     }
-}
+    }
+
