@@ -1,8 +1,13 @@
 package ru.hogwarts.school.model;
 
-import java.util.Objects;
+import nonapi.io.github.classgraph.json.Id;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.util.Objects;
+@EntityScan
 public class Student {
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private int age;

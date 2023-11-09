@@ -3,7 +3,7 @@ package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
 
-import java.util.HashMap;
+import java.util.Collection;
 
 @Service
 public interface FacultyService {
@@ -16,7 +16,9 @@ public interface FacultyService {
 
     Faculty editFaculty(Faculty faculty);
 
-    Faculty deleteFaculty(long id);
+    void deleteFaculty(long id);
 
-    HashMap<Long, Faculty> getFacultyByColor(String color);
+
+
+    Collection<Faculty> getAllFaculty();
 }

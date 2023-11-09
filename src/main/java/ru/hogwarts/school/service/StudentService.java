@@ -3,7 +3,9 @@ package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.model.repositories.StudentRepository;
 
+import java.util.Collection;
 import java.util.HashMap;
 @Service
 public interface StudentService {
@@ -15,7 +17,10 @@ public interface StudentService {
 
     Student deleteStudent(long id);
 
+
+
     Student createStudent(Student student);
 
-    HashMap<Long, Student> getStudentByAge(int age);
+
+    Collection<Student> getAllStudent();
 }

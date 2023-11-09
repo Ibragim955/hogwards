@@ -1,8 +1,15 @@
 package ru.hogwarts.school.model;
 
-import java.util.Objects;
+import nonapi.io.github.classgraph.json.Id;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
+import javax.annotation.processing.Generated;
+import java.util.Objects;
+@EntityScan
 public class Faculty {
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String color;

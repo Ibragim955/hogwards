@@ -1,11 +1,11 @@
 package ru.hogwarts.school.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
-import java.util.HashMap;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("student")
@@ -28,11 +28,12 @@ public class StudentController {
         return studentService.editStudent(student);
     }
     @DeleteMapping("{id}") // DELETE http://localhost:8080/student/23
-    public Student deleteStudent(@PathVariable long id){
-        return studentService.deleteStudent(id);
+    public ResponseEntity<Object> deleteStudent(@PathVariable long id){
+        studentService.deleteStudent(id);
+        return ResponseEntity.ok().build();
     }
-    @GetMapping("{age}") // Get http://localhost:8080/student/23
-    public HashMap<Long, Student> getStudentByAge(@PathVariable int age) {
-        return studentService.getStudentByAge(age);
+    @GetMapping // Get http://localhost:8080/student/23
+   public ResponseEntity<Collection<Student>> getAllStudent(){
+        return ResponseEntity.ok(studentService.getAllStudent());
     }
 }
