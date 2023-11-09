@@ -36,4 +36,5 @@ public class StudentController {
    public ResponseEntity<Collection<Student>> getAllStudent(){
         return ResponseEntity.ok(studentService.getAllStudent());
     }
+
 }
