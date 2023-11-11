@@ -1,23 +1,27 @@
 package ru.hogwarts.school.model;
 
-import nonapi.io.github.classgraph.json.Id;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import javax.annotation.processing.Generated;
+
 import java.util.Objects;
-@EntityScan
+@Entity
 public class Faculty {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String color;
 
-    public Faculty(Long id, String name, String color) {
-        this.id = id;
+    public Faculty(String name, String color) {
         this.name = name;
         this.color = color;
+    }
+
+    public Faculty() {
+
     }
 
     public Long getId() {

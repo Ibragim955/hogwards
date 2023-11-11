@@ -2,13 +2,14 @@ package ru.hogwarts.school.service.implemention;
 
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.model.repositories.FacultyRepository;
+import ru.hogwarts.school.repositories.FacultyRepository;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
-public abstract class FacultyServiceImpl implements FacultyService {
+public class FacultyServiceImpl implements FacultyService {
    private final FacultyRepository facultyRepository;
 
     public FacultyServiceImpl(FacultyRepository facultyRepository) {
@@ -20,7 +21,7 @@ public abstract class FacultyServiceImpl implements FacultyService {
        return facultyRepository.save(faculty);
     }
     @Override
-    public Faculty findFaculty(long id) {
+    public Optional<Faculty> findFaculty(Long id) {
         return facultyRepository.findById(id);
     }
 
@@ -30,7 +31,7 @@ public abstract class FacultyServiceImpl implements FacultyService {
       return facultyRepository.save(faculty);
     }
     @Override
-    public void deleteFaculty(long id){
+    public void deleteFaculty(Long id){
         facultyRepository.deleteById(id);
     }
 

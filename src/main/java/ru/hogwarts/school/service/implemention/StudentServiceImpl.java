@@ -2,13 +2,14 @@ package ru.hogwarts.school.service.implemention;
 
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Student;
-import ru.hogwarts.school.model.repositories.StudentRepository;
+import ru.hogwarts.school.repositories.StudentRepository;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
-public abstract class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     public StudentServiceImpl(StudentRepository studentRepository) {
@@ -17,22 +18,22 @@ public abstract class StudentServiceImpl implements StudentService {
 
 @Override
     public Student createStudent(Student student){
-        return StudentRepository.save(student);
+        return studentRepository.save(student);
     }
 
 
 
     @Override
-    public Student findStudent(long id) {
+    public Optional<Student> findStudent(Long id) {
        return studentRepository.findById(id);
     }
 @Override
     public Student editStudent(Student student) {
-      return StudentRepository.save(student);
+      return studentRepository.save(student);
     }
     @Override
-    public Student deleteStudent(long id){
-      return studentRepository.deletyById(id);
+    public void deleteStudent(Long id){
+        studentRepository.deleteById(id);
     }
     @Override
    public Collection<Student>getAllStudent(){
