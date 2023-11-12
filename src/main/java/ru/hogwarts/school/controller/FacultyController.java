@@ -8,7 +8,6 @@ import ru.hogwarts.school.service.FacultyService;
 import java.util.Collection;
 import java.util.Optional;
 
-@RestController
 @RequestMapping("faculty")
 public class FacultyController {
 
@@ -37,5 +36,10 @@ public class FacultyController {
     @GetMapping // Get http://localhost:8080/faculty/23
     public ResponseEntity<Collection<Faculty>> getAllFaculty(){
         return ResponseEntity.ok(facultyService.getAllFaculty());
+    }
+    @GetMapping("byColor")
+   // ResponseEntity
+     Collection <Faculty> findByColor(@RequestParam String color,@RequestParam String name){
+        return facultyService.findByColor(name, color);
     }
 }

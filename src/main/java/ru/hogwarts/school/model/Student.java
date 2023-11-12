@@ -1,10 +1,8 @@
 package ru.hogwarts.school.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import javax.swing.text.Position;
 import java.util.Objects;
 @Entity
 public class Student {
@@ -13,10 +11,15 @@ public class Student {
     private Long id;
     private String name;
     private int age;
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
 
-    public Student(String name, int age) {
+
+    public Student(String name, int age, Faculty faculty) {
         this.name = name;
         this.age = age;
+        this.faculty = faculty;
     }
 
     public Student() {

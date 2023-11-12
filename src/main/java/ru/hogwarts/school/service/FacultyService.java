@@ -22,4 +22,10 @@ public interface FacultyService {
 
 
     Collection<Faculty> getAllFaculty();
+
+
+
+    Collection<Faculty> findByColor(String name, String color);
+
+
 }

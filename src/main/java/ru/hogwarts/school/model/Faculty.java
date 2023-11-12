@@ -1,11 +1,10 @@
 package ru.hogwarts.school.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 @Entity
 public class Faculty {
@@ -14,14 +13,26 @@ public class Faculty {
     private Long id;
     private String name;
     private String color;
+    @OneToMany(mappedBy = "faculty")
+    private Collection<Student> students;
 
-    public Faculty(String name, String color) {
-        this.name = name;
-        this.color = color;
+
+    public Faculty(String name, String color, Collection <Student> students) {
+            this.name = name;
+            this.color = color;
+            this.students = students;
     }
 
-    public Faculty() {
+        public Faculty() {
 
+    }
+
+    public Collection<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Collection<Student> students) {
+        this.students = students;
     }
 
     public Long getId() {
@@ -49,11 +60,20 @@ public class Faculty {
     }
 
     @Override
+    public String toString() {
+        return "Faculty{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Faculty faculte = (Faculty) o;
-        return Objects.equals(id, faculte.id) && Objects.equals(name, faculte.name) && Objects.equals(color, faculte.color);
+        Faculty faculty = (Faculty) o;
+        return Objects.equals(id, faculty.id) && Objects.equals(name, faculty.name) && Objects.equals(color, faculty.color);
     }
 
     @Override
