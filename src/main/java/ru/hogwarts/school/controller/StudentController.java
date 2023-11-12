@@ -30,15 +30,18 @@ public class StudentController {
         return studentService.editStudent(student);
     }
     @DeleteMapping("{id}") // DELETE http://localhost:8080/student/23
+
     public ResponseEntity<Object> deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
     @GetMapping // Get http://localhost:8080/student/23
+
    public ResponseEntity<Collection<Student>> getAllStudent(){
         return ResponseEntity.ok(studentService.getAllStudent());
     }
 @GetMapping("/beAgeBetween")
+
     Collection<Student> ByAge(@RequestParam int minAge, @RequestParam int maxAge){
         return studentService.findAllByAgeBetween(minAge, maxAge);
 
