@@ -12,6 +12,7 @@ import java.util.Optional;
 public class FacultyServiceImpl implements FacultyService {
    private final FacultyRepository facultyRepository;
 
+
     public FacultyServiceImpl(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
     }
