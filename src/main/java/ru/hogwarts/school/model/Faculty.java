@@ -9,15 +9,16 @@ import java.util.Objects;
 @Entity
 public class Faculty {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String color;
+
     @OneToMany(mappedBy = "faculty")
-    private Collection<Student> students;
+    private List<Student> students;
 
 
-    public Faculty(String name, String color, Collection <Student> students) {
+    public Faculty(String name, String color, List <Student> students) {
             this.name = name;
             this.color = color;
             this.students = students;
@@ -31,7 +32,7 @@ public class Faculty {
         return students;
     }
 
-    public void setStudents(Collection<Student> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 

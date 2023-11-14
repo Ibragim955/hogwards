@@ -11,15 +11,18 @@ public class Student {
     private Long id;
     private String name;
     private int age;
+    @OneToOne
+    @JoinColumn(name = "avatar_id")
+    private Avatar avatar;
     @ManyToOne
-    @JoinColumn(name = "faculty_id")
+    @JoinColumn(name = "faculty_id") // this references the faculty id in the faculties table.
     private Faculty faculty;
 
 
-    public Student(String name, int age, Faculty faculty) {
+    public Student(String name, int age, Avatar avatar) {
         this.name = name;
         this.age = age;
-        this.faculty = faculty;
+        this.avatar = avatar;
     }
 
     public Student() {
