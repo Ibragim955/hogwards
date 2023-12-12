@@ -19,10 +19,9 @@ public class Student {
     private Faculty faculty;
 
 
-    public Student(String name, int age, Avatar avatar) {
+    public Student(String name, int age) {
         this.name = name;
         this.age = age;
-        this.avatar = avatar;
     }
 
     public Student() {
@@ -66,4 +65,11 @@ public class Student {
         return Objects.hash(id, name, age);
     }
 
+    public void setFaculty(Faculty faculty) {
+    }
+
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
 }

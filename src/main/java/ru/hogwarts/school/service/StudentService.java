@@ -1,28 +1,41 @@
 package ru.hogwarts.school.service;
 
-import org.springframework.stereotype.Service;
+import ru.hogwarts.school.model.Age;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
+import java.util.OptionalDouble;
 
-@Service
-public interface StudentService {
+public interface StudentService{
+    Student createStudent(Student student);
 
-
-    Optional<Student> findStudent(Long id);
+    Student getStudentById(long id);
 
     Student editStudent(Student student);
 
-    void deleteStudent(Long id);
+    void removeStudent(long id);
 
 
+    Collection<Student> findAllStudentsByAgeBetween(int max, int min);
 
-    Student createStudent(Student student);
+    Faculty findFacultyByStudent(Long id);
 
+    Collection<Student> getAll();
 
-    Collection<Student> getAllStudent();
+    /* ---------------------------------------------------------------------------*/
+    Long getAmountStudent();
 
+    Age getAverageOfStudent();
 
-    Collection<Student>findAllByAgeBetween(int minAge, int maxAge);
+    Collection<Student> getTopFiveStudents();
+
+    List<String> getStudentNamesStartWithA();
+
+    OptionalDouble getAverageAge();
+
+    void getAllNameOfStudents();
+
+    void getAllNameOfStudentsSync();
 }

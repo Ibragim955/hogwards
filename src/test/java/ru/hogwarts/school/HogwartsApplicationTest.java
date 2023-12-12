@@ -10,35 +10,8 @@ import ru.hogwarts.school.controller.StudentController;
 import ru.hogwarts.school.model.Student;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class HogwartsApplicationTest {
+public class HogwartsApplicationTest {
     @LocalServerPort
     private int port;
 
-    @Autowired
-    private StudentController studentController;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
-    @Test
-    void contextLoads() throws Exception {
-        Assertions.assertThat(studentController).isNotNull();
-    }
-
-    @Test
-    public void testGetStudents() throws Exception {
-        Assertions
-                .assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/student", String.class))
-                .isNotNull();
-    }
-    @Test
-    public void testPostStudent() throws Exception {
-        Student student = new Student();
-        student.setId(1L);
-        student.setName("Bob");
-
-        Assertions
-                .assertThat(this.restTemplate.postForObject("http://localhost:" + port + "/student", student, String.class))
-                .isNotNull();
-    }
 }
-

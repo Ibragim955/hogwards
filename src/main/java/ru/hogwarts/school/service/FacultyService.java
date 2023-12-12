@@ -1,31 +1,31 @@
 package ru.hogwarts.school.service;
 
-import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-@Service
 public interface FacultyService {
-
-
-
-    Optional<Faculty> findFaculty(Long id);
-
     Faculty createFaculty(Faculty faculty);
+
+    Optional<Faculty> findFaculty(long id);
 
     Faculty editFaculty(Faculty faculty);
 
-    void deleteFaculty(Long id);
+    void removeFaculty(long id);
+
+    Faculty findFacultyByName(String name);
+
+    Collection<Faculty> getAll();
+
+    Collection<Faculty> findFacultyByColor(String color);
+
+    Collection<Student> findStudentsByFaculty(Long id);
 
 
+    Collection<Faculty> getAllByColor(String color);
 
-    Collection<Faculty> getAllFaculty();
-
-
-
-    Collection<Faculty> findByColor(String name, String color);
-
-
+    String getLongestFacultyName();
 }

@@ -16,15 +16,16 @@ public class Faculty {
 
     @OneToMany(mappedBy = "faculty")
     private List<Student> students;
+    private Object student;
 
 
-    public Faculty(String name, String color, List <Student> students) {
-            this.name = name;
-            this.color = color;
-            this.students = students;
+    public Faculty(String name, String color) {
+        this.name = name;
+        this.color = color;
+        this.students = students;
     }
 
-        public Faculty() {
+    public Faculty() {
 
     }
 
@@ -83,4 +84,11 @@ public class Faculty {
     }
 
 
+    public void setStudent(Object student) {
+        this.student = student;
+    }
+
+    public Collection<Student> getStudent() {
+        return this.getStudents();
+    }
 }
