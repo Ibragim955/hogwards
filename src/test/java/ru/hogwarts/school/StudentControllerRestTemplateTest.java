@@ -1,6 +1,5 @@
 package ru.hogwarts.school;
 
-import org.springframework.boot.test.context.SpringBootTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,18 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.service.StudentService;
+
+import java.security.PrivateKey;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class StudentControllerRestTemplateTest {
+
     @LocalServerPort
     private int port;
 
@@ -26,6 +32,7 @@ public class StudentControllerRestTemplateTest {
                 .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/1", Student.class))
                 .isNotNull();
     }
+
     @Test
     public void testCreateStudent() {
         Faculty faculty = new Faculty("name", "red");
@@ -41,10 +48,20 @@ public class StudentControllerRestTemplateTest {
     }
 
     @Test
-    public void testGetFacultyByStudent() {
-        Assertions
-                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/byStudent/1", String.class).getStatusCode()).isEqualTo(HttpStatus.OK);
+    public void testFindStudentByFaculty() {
+        Faculty faculty = new Faculty("name", "red");
+        Student student = new Student();
 
+        student.setId(1L);
+        student.setName("Bob");
+        student.setAge(34);
+        student.setFaculty(faculty);
+
+
+        Assertions
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/byStudent/1",Student.class).getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/byStudent/1",Student.class).getBody().getName()).isEqualTo("Bob");
     }
 
     @Test
@@ -52,10 +69,10 @@ public class StudentControllerRestTemplateTest {
         Faculty faculty = new Faculty("name", "red");
         faculty.setId(1L);
 
-        Student student = new Student("Bob", 34);
+        Student student = new Student( "Bob", 34);
         student.setFaculty(faculty);
 
-        Student student1 = new Student( "bob1", 30);
+        Student student1 = new Student("bob1", 30);
         student1.setFaculty(faculty);
 
         testRestTemplate.postForEntity("http://localhost:" + port + "/student", student, Student.class);
@@ -64,7 +81,8 @@ public class StudentControllerRestTemplateTest {
 
         Assertions
                 .assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/student/byAgeBetween?max=35&min=16", String.class))
-                .isNotNull();
+                .isNotNull()
+                .isEqualTo(student1);
     }
 
     @Test
@@ -72,6 +90,8 @@ public class StudentControllerRestTemplateTest {
         testRestTemplate.delete("http://localhost:" + port + "/student/1");
 
         Assertions
-                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/1", String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/1", String.class))
+                .isNull();
     }
+
 }
