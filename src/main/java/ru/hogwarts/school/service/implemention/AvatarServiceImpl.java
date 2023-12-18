@@ -13,6 +13,7 @@ import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.AvatarRepository;
 import ru.hogwarts.school.service.AvatarService;
+import ru.hogwarts.school.service.StudentServiceImpl;
 
 
 import javax.imageio.ImageIO;

@@ -1,4 +1,4 @@
-package ru.hogwarts.school.service.implemention;
+package ru.hogwarts.school.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Age;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
-import ru.hogwarts.school.repositories.StudentRepository;
-import ru.hogwarts.school.service.StudentService;
-
+import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
 import java.util.List;

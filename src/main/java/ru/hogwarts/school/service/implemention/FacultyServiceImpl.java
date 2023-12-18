@@ -8,7 +8,6 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.FacultyRepository;
 import ru.hogwarts.school.service.FacultyService;
 
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Optional;
@@ -23,7 +22,7 @@ public class FacultyServiceImpl implements FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-    Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+    Logger logger = LoggerFactory.getLogger(ru.hogwarts.school.service.StudentServiceImpl.class);
 
 
     @Override

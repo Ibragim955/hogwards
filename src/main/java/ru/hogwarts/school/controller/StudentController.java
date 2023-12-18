@@ -1,26 +1,29 @@
 package ru.hogwarts.school.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Age;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.service.StudentServiceImpl;
 import ru.hogwarts.school.model.Student;
-import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalDouble;
-
 
 @RestController
 @RequestMapping("student")
 public class StudentController {
-    private final StudentService studentService;
+    private final StudentServiceImpl studentService;
 
-    public StudentController(StudentService studentService) {
+    @Autowired
+    public StudentController(StudentServiceImpl studentService) {
         this.studentService = studentService;
     }
+
     @GetMapping("{id}")
     public ResponseEntity<Student> getStudentInfo(@PathVariable long id) {
         Student student = studentService.getStudentById(id);
@@ -88,6 +91,8 @@ public class StudentController {
     public OptionalDouble getAverageAge() {
         return studentService.getAverageAge();
     }
+
+    /* ------------------------------------------------------------------ */
 
     @GetMapping("/print-students-name")
     public ResponseEntity<Void> printStudentsName() {

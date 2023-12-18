@@ -1,22 +1,23 @@
 package ru.hogwarts.school;
 
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import ru.hogwarts.school.controller.StudentController;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import ru.hogwarts.school.controller.StudentController;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
-import ru.hogwarts.school.repositories.StudentRepository;
-import ru.hogwarts.school.service.implemention.StudentServiceImpl;
+import ru.hogwarts.school.repository.StudentRepository;
+import ru.hogwarts.school.service.StudentServiceImpl;
 
+
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,7 +38,7 @@ public class StudentControllerMockMvcTest {
 
     @Test
     public void testFindStudentById() throws Exception {
-        Student student = new Student("name", 34);
+        Student student = new Student(1L, "name", 34);
 
         when(studentRepository.getById(1L)).thenReturn(student);
 
@@ -114,7 +115,7 @@ public class StudentControllerMockMvcTest {
         Faculty faculty = new Faculty("name", "red");
         faculty.setId(1L);
 
-        Student student = new Student("name", 34);
+        Student student = new Student(1L, "name", 34);
         student.setFaculty(faculty);
 
         when(studentRepository.getById(any(Long.class))).thenReturn(student);

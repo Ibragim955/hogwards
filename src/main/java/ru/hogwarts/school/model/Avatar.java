@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
-public class Avatar  {
+public class Avatar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,10 +15,13 @@ public class Avatar  {
     private long fileSize;
     private String mediaType;
     @Lob
-    private byte[]data;
+    byte[] data;
 
-    @OneToOne(mappedBy = "avatar")
-    private Student student;
+    @OneToOne
+    Student student;
+
+    public Avatar() {
+    }
 
     public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Student student) {
         this.id = id;
@@ -27,8 +31,9 @@ public class Avatar  {
         this.data = data;
         this.student = student;
     }
-    public Avatar(){
 
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Long getId() {
@@ -75,9 +80,6 @@ public class Avatar  {
         return student;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -105,5 +107,4 @@ public class Avatar  {
                 ", student=" + student +
                 '}';
     }
-
 }

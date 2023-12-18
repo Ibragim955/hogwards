@@ -1,4 +1,4 @@
-package ru.hogwarts.school.repositories;
+package ru.hogwarts.school.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,9 +10,7 @@ import java.util.Collection;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-
-    Collection<Student> findAllByAgeBetween(int minAge, int maxAge);
-
+    Collection<Student> findByAgeBetween(int max, int min);
 
     @Query(value = "SELECT COUNT(*) FROM student", nativeQuery = true)
     Long getNumberOfAllStudents();
@@ -22,6 +20,4 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     @Query(value = "SELECT * FROM student ORDER BY id desc limit 5", nativeQuery = true)
     Collection<Student> getTopFiveStudents();
-
-    Collection<Student> findByAgeBetween(int max, int min);
 }
