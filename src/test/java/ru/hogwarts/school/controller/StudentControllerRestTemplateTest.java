@@ -18,6 +18,9 @@ public class StudentControllerRestTemplateTest {
     private int port;
 
     @Autowired
+    private StudentController studentController;
+
+    @Autowired
     private TestRestTemplate testRestTemplate;
 
     @Test
@@ -69,10 +72,10 @@ public class StudentControllerRestTemplateTest {
 
     @Test
     public void testDeleteStudent() {
-        testRestTemplate.delete("http://localhost:" + port + "/student/1");
+        testRestTemplate.delete("http://localhost:8081/student/1");
 
         Assertions
-                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/student/1", String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:8081/student/1", String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
 }
