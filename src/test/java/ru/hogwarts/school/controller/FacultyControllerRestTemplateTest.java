@@ -60,7 +60,7 @@ public class FacultyControllerRestTemplateTest {
         Assertions
                 .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/2", Faculty.class).getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions
-               .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/2", Faculty.class).getBody().getName()).isEqualTo("name");
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/2", Faculty.class).getBody().getName()).isEqualTo("name");
     }
 
 
