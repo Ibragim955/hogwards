@@ -41,7 +41,7 @@ public class AvatarServiceImpl implements AvatarService {
         this.avatarRepository = avatarRepository;
     }
 
-    Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+   private Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
 
     @Override
     public Long uploadAvatar(Long id, MultipartFile file) throws IOException {

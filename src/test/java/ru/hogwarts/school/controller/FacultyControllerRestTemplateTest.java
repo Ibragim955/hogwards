@@ -37,15 +37,14 @@ public class FacultyControllerRestTemplateTest {
         assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("name");
     }
-// ------------------------------------------------------------------------\
 
 
     @Test
     public void testGetFacultyByName() {
-//        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?name=name", Faculty.class);
+       ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?name=name", Faculty.class);
 
         assertThat(testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?name=name", String.class).getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("name");
+        assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("name");
     }
 
     @Test
@@ -57,6 +56,7 @@ public class FacultyControllerRestTemplateTest {
     }
     @Test
     public void testGetStudentsByFaculty() {
+
         Assertions
                 .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/2", Faculty.class).getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions

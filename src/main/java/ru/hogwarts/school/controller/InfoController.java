@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class InfoController {
 
     @Value("${server.port}")
-    int PORT;
+    int port;
     @GetMapping("/getPort")
-    public int getPort() {
-        return PORT;
+    private int getPort() {
+        return port;
     }
 }
